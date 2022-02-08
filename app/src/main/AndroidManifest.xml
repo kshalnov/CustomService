@@ -9,6 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CustomService">
+        <service
+            android:name=".ReferenceIntentService"
+            android:exported="false" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true">
