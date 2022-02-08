@@ -2,29 +2,23 @@ package ru.gb.course1.customservice
 
 import android.app.Service
 import android.content.Intent
-import android.os.Handler
-import android.os.HandlerThread
 import android.os.IBinder
-import android.util.Log
 import androidx.annotation.WorkerThread
 
 abstract class CustomIntentService : Service() {
 
-    private lateinit var handlerThread: HandlerThread
-    private lateinit var handler: Handler
+    private lateinit var workerThread: CustomWorkerThread
 
     override fun onCreate() {
         super.onCreate()
 
-        handlerThread = HandlerThread("CustomIntentServiceWorkerThread")
-        handlerThread.start()
-
-        handler = Handler(handlerThread.looper)
+        workerThread = CustomWorkerThread()
+        workerThread.start()
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        handlerThread.quit()
+        workerThread.quit()
     }
 
     @WorkerThread
@@ -35,7 +29,7 @@ abstract class CustomIntentService : Service() {
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        handler.post {
+        workerThread.post {
             onHandleIntent(intent)
             stopSelf(startId)
         }
