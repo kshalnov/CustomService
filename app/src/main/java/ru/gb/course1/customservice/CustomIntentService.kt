@@ -8,8 +8,6 @@ import android.os.IBinder
 import android.util.Log
 import androidx.annotation.WorkerThread
 
-private const val TAG = "@@@"
-
 abstract class CustomIntentService : Service() {
 
     private lateinit var handlerThread: HandlerThread
@@ -22,29 +20,21 @@ abstract class CustomIntentService : Service() {
         handlerThread.start()
 
         handler = Handler(handlerThread.looper)
-
-        Log.d(TAG, "onCreate() called")
     }
 
     override fun onDestroy() {
         super.onDestroy()
         handlerThread.quit()
-        Log.d(TAG, "onDestroy() called")
     }
 
     @WorkerThread
-    abstract fun onHandleIntent(intent: Intent?)
+    protected abstract fun onHandleIntent(intent: Intent?)
 
     override fun onBind(p0: Intent?): IBinder? {
-        Log.d(TAG, "onBind() called with: p0 = $p0")
         return null
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        Log.d(
-            TAG,
-            "onStartCommand() called with: intent = $intent, flags = $flags, startId = $startId"
-        )
         handler.post {
             onHandleIntent(intent)
             stopSelf(startId)
