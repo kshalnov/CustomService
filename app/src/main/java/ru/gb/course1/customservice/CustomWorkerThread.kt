@@ -9,6 +9,15 @@ class CustomWorkerThread : Thread() {
     private var isLoopWorking = false
     private val lock: Object = Object()
 
+    // todo заменить на потокобезопасную очередь
+    // todo отказаться от объекта Java и заменить на Kotlin-way подход
+
+    // Что-то одно на выбор
+    // todo придумать как вынести свой аналог handler из класса потока
+    // todo сделать в MainActivity кнопки для тестирования нагрузки WorkerThread из разных потоков
+    // todo сделать приоритетную очередь с разным приоритетом задач
+    // todo сделать postDelayed с отправкой спустя какое-то время
+
     @WorkerThread
     override fun run() {
         isLoopWorking = true
