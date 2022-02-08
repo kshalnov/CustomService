@@ -13,16 +13,8 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.startButton.setOnClickListener {
-            // todo
-        }
-
-        binding.stopButton.setOnClickListener {
-            // todo
-        }
-
         binding.nextButton.setOnClickListener {
-            ReferenceIntentService.startToastJob(
+            CustomToastIntentService.startToastJob(
                 this,
                 UUID.randomUUID().toString(),
                 3_000L

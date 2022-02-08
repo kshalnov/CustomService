@@ -9,21 +9,9 @@
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/start_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Start" />
-
-    <Button
         android:id="@+id/next_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Next" />
-
-    <Button
-        android:id="@+id/stop_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Stop" />
 
 </LinearLayout>
